@@ -51,6 +51,5 @@ function onLogin(cid)
 
 	registerCreatureEvent(cid, "ReportBug")
 	registerCreatureEvent(cid, "AdvanceSave")
-	registerCreatureEvent(cid, "death_bless")
 	return true
 end
