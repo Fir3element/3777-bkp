@@ -4,7 +4,7 @@
 	accountManager = true
 	namelockManager = true
 	newPlayerChooseVoc = true
-	newPlayerChooseTown = true
+	newPlayerChooseTown = false
 	newPlayerDefaultTownId = 1
 	newPlayerLevel = 1
 	newPlayerMagicLevel = 0
