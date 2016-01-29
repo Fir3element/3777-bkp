@@ -1,5 +1,6 @@
 1. Compiled:
 	* x32: https://github.com/Fir3element/binaries/raw/master/x32.rar
+	* x32 (dev-cpp): https://github.com/Fir3element/binaries/raw/master/x32_dev.rar
 	* x64: https://github.com/Fir3element/binaries/raw/master/x64.rar
 
 2. Source: https://github.com/Fir3element/3777/archive/master.zip
