@@ -1,9 +1,9 @@
 1. Compiled:
-	* x32: http://www.mediafire.com/download/92j91afgfdx3m54
-	* x64: http://www.mediafire.com/download/5s9yjho3b822igw
+	* x32: https://github.com/Fir3element/binaries/raw/master/x32.rar
+	* x64: https://github.com/Fir3element/binaries/raw/master/x64.rar
 
 2. Source: https://github.com/Fir3element/3777/archive/master.zip
 
-3. Dev-cpp: http://www.mediafire.com/download/os3063htddwxlb9
+3. Dev-cpp: https://github.com/Fir3element/binaries/raw/master/dev-cpp.rar
 
-4. MSVC10 libs and includes: http://www.mediafire.com/download/bc15sgl25q1b5zl
+4. MSVC10 libs and includes: https://github.com/Fir3element/binaries/raw/master/vc10_pack.rar
