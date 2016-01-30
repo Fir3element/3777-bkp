@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ////////////////////////////////////////////////////////////////////////
+#ifdef __USE_MYSQL__
 #include "otpch.h"
 #ifdef _MSC_VER
 #include <errmsg.h>
@@ -320,3 +321,4 @@ MySQLResult::MySQLResult(MYSQL_RES* result)
 	while((field = mysql_fetch_field(m_handle)))
 		m_listNames[field->name] = i++;
 }
+#endif
