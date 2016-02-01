@@ -621,6 +621,9 @@ uint32_t DatabaseManager::updateDatabase()
 
 					break;
 				}
+
+				default:
+					break;
 			}
 
 			registerDatabaseConfig("db_version", 14);
@@ -707,6 +710,9 @@ uint32_t DatabaseManager::updateDatabase()
 
 					break;
 				}
+
+				default:
+					break;
 			}
 
 			registerDatabaseConfig("db_version", 15);
@@ -744,6 +750,9 @@ uint32_t DatabaseManager::updateDatabase()
 
 					break;
 				}
+	
+				default:
+					break;
 			}
 
 			registerDatabaseConfig("db_version", 16);
