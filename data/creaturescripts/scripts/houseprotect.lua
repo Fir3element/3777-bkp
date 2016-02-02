@@ -1,4 +1,4 @@
-function isInvited(houseId, playerName)
+local function isInvited(houseId, playerName)
 	if(string.find(string.lower(getHouseAccessList(houseId, 0x100)), playerName) or string.find(string.lower(getHouseAccessList(houseId, 0x101)), playerName)) then
 		return true
 	end
