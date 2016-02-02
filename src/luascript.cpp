@@ -2272,7 +2272,7 @@ void LuaInterface::registerFunctions()
 	//getTownName(townId)
 	lua_register(m_luaState, "getTownName", LuaInterface::luaGetTownName);
 
-	//getTownTemplePosition(townId[, displayError])
+	//getTownTemplePosition(townId)
 	lua_register(m_luaState, "getTownTemplePosition", LuaInterface::luaGetTownTemplePosition);
 
 	//getTownHouses(townId)
@@ -9553,10 +9553,6 @@ int32_t LuaInterface::luaGetTownName(lua_State* L)
 int32_t LuaInterface::luaGetTownTemplePosition(lua_State* L)
 {
 	//getTownTemplePosition(townId)
-	bool displayError = true;
-	if(lua_gettop(L) >= 2)
-		displayError = popNumber(L);
-
 	uint32_t townId = popNumber(L);
 	if(Town* town = Towns::getInstance()->getTown(townId))
 		pushPosition(L, town->getPosition(), 255);
