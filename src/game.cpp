@@ -3788,6 +3788,35 @@ bool Game::playerSay(uint32_t playerId, uint16_t channelId, SpeakClasses type, c
 		return false;
 	}
 
+	std::string _text = asLowerCaseString(text);
+	for(uint8_t i = 0; i < _text.length(); i++)
+	{
+		char t = _text[i];
+		if(t != '-' && t != '.' && !(t >= 'a' && t <= 'z'))
+		{
+			_text.erase(i, 1);
+			i--;
+		}
+	}
+
+	StringVec strVector;
+	strVector = explodeString(g_config.getString(ConfigManager::ADVERTISING_BLOCK), ";");
+	for(StringVec::iterator it = strVector.begin(); it != strVector.end(); ++it)
+	{
+		std::string words []= {(*it)};
+		int ii, length;
+		length = sizeof(words) / sizeof(words[0]);
+		for(ii = 0; ii < int(length); ii++)
+		{
+			if (int(_text.find(words[ii])) > 0 || _text == words[ii])
+			{
+				player->sendTextMessage(MSG_STATUS_SMALL, "You can't send this message, forbidden characters.");
+				return false;
+				break;
+			}
+		}
+	}
+
 	if(player->isAccountManager())
 	{
 		if(mute)

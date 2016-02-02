@@ -210,6 +210,7 @@
 	promptExceptionTracerErrorBox = true
 	maximumDoorLevel = 500
 	maxMessageBuffer = 4
+	advertisingBlock = ""
 
 	-- VIP list
 	separateVipListPerCharacter = false

@@ -317,6 +317,7 @@ bool ConfigManager::load()
 	m_confNumber[EXHAUST_ONBUY] = getGlobalNumber("onBuy", 500);
 	m_confNumber[EXHAUST_ONSELL] = getGlobalNumber("onSell", 500);
 	m_confNumber[EXHAUST_CHANGEOUFIT] = getGlobalNumber("changeOutfit", 500);
+	m_confString[ADVERTISING_BLOCK] = getGlobalString("advertisingBlock", "");
 
 	m_loaded = true;
 	return true;
