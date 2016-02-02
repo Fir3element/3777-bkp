@@ -210,7 +210,7 @@
 	promptExceptionTracerErrorBox = true
 	maximumDoorLevel = 500
 	maxMessageBuffer = 4
-	advertisingBlock = ""
+	advertisingBlock = ".net;servegame;no-ip,.net;.com;.com.br;.org;.pl;.net;.biz"
 
 	-- VIP list
 	separateVipListPerCharacter = false
