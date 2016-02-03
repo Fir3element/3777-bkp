@@ -3801,8 +3801,8 @@ bool Game::playerSay(uint32_t playerId, uint16_t channelId, SpeakClasses type, c
 
 	const char *strings[] = {"servegame", "no-ip", ".net", ".com", ".org", "biz", ".br", "sytes", ".info"};
 	int i, stringSize;
-    stringSize = sizeof(strings) / sizeof(strings[0]);
-    for (i = 0; i < stringSize; i++)
+	stringSize = sizeof(strings) / sizeof(strings[0]);
+	for (i = 0; i < stringSize; i++)
 	{
 		if(int(_text.find(strings[i])) > 0 || _text == strings[i])
 		{
