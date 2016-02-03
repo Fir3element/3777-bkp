@@ -64,7 +64,6 @@ class ConfigManager
 			ADMIN_PASSWORD,
 			ADMIN_ENCRYPTION,
 			ADMIN_ENCRYPTION_DATA,
-			ADVERTISING_BLOCK,
 			LAST_STRING_CONFIG /* this must be the last one */
 		};
 
