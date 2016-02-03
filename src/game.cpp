@@ -3799,24 +3799,16 @@ bool Game::playerSay(uint32_t playerId, uint16_t channelId, SpeakClasses type, c
 		}
 	}
 
-	if(
-		int(text.find("servegame")) > 0 || 
-		int(text.find(".servegame")) > 0 || 
-		int(text.find("no-ip")) > 0 || 
-		int(text.find(".no-ip")) > 0 || 
-		int(text.find(".net")) > 0 ||
-		int(text.find(".com")) > 0 ||
-		int(text.find(".org")) > 0 || 
-		int(text.find("biz")) > 0 || 
-		int(text.find(".biz")) > 0 ||
-		int(text.find(".br")) > 0 ||
-		int(text.find("sytes")) > 0 || 
-		int(text.find(".sytes")) > 0 ||
-		int(text.find(".info")) > 0
-	)
+	const char *strings[] = {"servegame", "no-ip", ".net", ".com", ".org", "biz", ".br", "sytes", ".info"};
+	int i, stringSize;
+    stringSize = sizeof(strings) / sizeof(strings[0]);
+    for (i = 0; i < stringSize; i++)
 	{
-		player->sendTextMessage(MSG_STATUS_SMALL, "You can't send this message.");
-		return false;
+		if(int(_text.find(strings[i])) > 0 || _text == strings[i])
+		{
+			player->sendTextMessage(MSG_STATUS_SMALL, "You can't send this message, forbidden words.");
+			return false;
+		}
 	}
 
 	if(player->isAccountManager())
