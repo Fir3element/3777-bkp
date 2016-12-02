@@ -33,6 +33,7 @@
     <ClInclude Include="..\database.h" />
     <ClInclude Include="..\databasemanager.h" />
     <ClInclude Include="..\databasemysql.h" />
+    <ClInclude Include="..\databasesqlite.h" />
     <ClInclude Include="..\definitions.h" />
     <ClInclude Include="..\depot.h" />
     <ClInclude Include="..\dispatcher.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="..\database.cpp" />
     <ClCompile Include="..\databasemanager.cpp" />
     <ClCompile Include="..\databasemysql.cpp" />
+	<ClCompile Include="..\databasesqlite.cpp" />
     <ClCompile Include="..\depot.cpp" />
     <ClCompile Include="..\dispatcher.cpp" />
     <ClCompile Include="..\exception.cpp" />
