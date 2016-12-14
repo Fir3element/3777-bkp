@@ -2395,6 +2395,12 @@ void LuaInterface::registerFunctions()
 	//getConfigFile()
 	lua_register(m_luaState, "getConfigFile", LuaInterface::luaGetConfigFile);
 
+	//isPlayerUsingOtclient(cid)
+	lua_register(m_luaState, "isPlayerUsingOtclient", LuaInterface::luaIsPlayerUsingOtclient);
+
+	//doPlayerSendExtendedOpcode(cid, opcode, buffer)
+	lua_register(m_luaState, "doPlayerSendExtendedOpcode", LuaInterface::luaDoPlayerSendExtendedOpcode);
+
 	//getConfigValue(key)
 	lua_register(m_luaState, "getConfigValue", LuaInterface::luaGetConfigValue);
 
@@ -9971,6 +9977,36 @@ int32_t LuaInterface::luaGetItemInfo(lua_State* L)
 	setField(L, "group", (int32_t)item->group);
 	setField(L, "type", (int32_t)item->type);
 	setFieldFloat(L, "weight", item->weight);
+	return 1;
+}
+
+int32_t LuaInterface::luaIsPlayerUsingOtclient(lua_State* L)
+{
+	//isPlayerUsingOtclient(cid)
+	ScriptEnviroment* env = getEnv();
+	if(Player* player = env->getPlayerByUID(popNumber(L)))
+	{
+		lua_pushboolean(L, player->isUsingOtclient());
+	}
+
+	lua_pushboolean(L, false);
+	return 1;
+}
+
+int32_t LuaInterface::luaDoPlayerSendExtendedOpcode(lua_State* L)
+{
+	//doPlayerSendExtendedOpcode(cid, opcode, buffer)
+	std::string buffer = popString(L);
+	int32_t opcode = popNumber(L);
+
+	ScriptEnviroment* env = getEnv();
+	if(Player* player = env->getPlayerByUID(popNumber(L)))
+	{
+		player->sendExtendedOpcode(opcode, buffer);
+		lua_pushboolean(L, true);
+	}
+
+	lua_pushboolean(L, false);
 	return 1;
 }
 

@@ -6395,3 +6395,14 @@ void Game::showHotkeyUseMessage(Player* player, Item* item)
 
 	player->sendTextMessage(MSG_INFO_DESCR, ss.str());
 }
+
+void Game::playerExtendedOpcode(uint32_t playerId, uint8_t opcode, const std::string& buffer)
+{
+	Player* player = getPlayerByID(playerId);
+	if(!player || player->isRemoved())
+		return;
+
+	CreatureEventList extendedOpcodeEvents = player->getCreatureEvents(CREATURE_EVENT_EXTENDED_OPCODE);
+	for(CreatureEventList::iterator it = extendedOpcodeEvents.begin(); it != extendedOpcodeEvents.end(); ++it)
+		(*it)->executeExtendedOpcode(player, opcode, buffer);
+}

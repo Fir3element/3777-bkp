@@ -117,7 +117,7 @@
     <ClCompile Include="..\database.cpp" />
     <ClCompile Include="..\databasemanager.cpp" />
     <ClCompile Include="..\databasemysql.cpp" />
-	<ClCompile Include="..\databasesqlite.cpp" />
+    <ClCompile Include="..\databasesqlite.cpp" />
     <ClCompile Include="..\depot.cpp" />
     <ClCompile Include="..\dispatcher.cpp" />
     <ClCompile Include="..\exception.cpp" />

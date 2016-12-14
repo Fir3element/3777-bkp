@@ -375,6 +375,7 @@ class Player : public Creature, public Cylinder
 		bool hasBlessing(int16_t blessing) const {return ((blessings & ((int16_t)1 << blessing)) != 0);}
 		uint16_t getBlessings() const;
 
+		bool isUsingOtclient() const { return operatingSystem >= CLIENTOS_OTCLIENT_LINUX;}
 		OperatingSystem_t getOperatingSystem() const {return operatingSystem;}
 		void setOperatingSystem(OperatingSystem_t clientOs) {operatingSystem = clientOs;}
 		uint32_t getClientVersion() const {return clientVersion;}
@@ -778,6 +779,10 @@ class Player : public Creature, public Cylinder
 					it->second->sendCreatureEmblem(creature);
            }
         }
+
+		void sendExtendedOpcode(uint8_t opcode, const std::string& buffer)
+			{if(client) client->sendExtendedOpcode(opcode, buffer);}
+
 		//container
 		void sendAddContainerItem(const Container* container, const Item* item);
 		void sendUpdateContainerItem(const Container* container, uint8_t slot, const Item* oldItem, const Item* newItem);
