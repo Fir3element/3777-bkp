@@ -1234,7 +1234,7 @@ void Items::parseItemNode(xmlNodePtr itemNode, uint32_t id)
 				if(readXMLInteger(itemAttributesNode, "value", intValue))
 					it.abilities.reflect[REFLECT_PERCENT][COMBAT_FIREDAMAGE] += intValue;
 			}
-			else if(tmpStrValue == "reflectpercentpoison" ||	tmpStrValue == "reflectpercentearth")
+			else if(tmpStrValue == "reflectpercentpoison" || tmpStrValue == "reflectpercentearth")
 			{
 				if(readXMLInteger(itemAttributesNode, "value", intValue))
 					it.abilities.reflect[REFLECT_PERCENT][COMBAT_EARTHDAMAGE] += intValue;

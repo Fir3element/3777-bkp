@@ -1063,6 +1063,39 @@ uint32_t DatabaseManager::updateDatabase()
 			registerDatabaseConfig("db_version", 25);
 			return 25;
 		}
+		
+				case 25:
+		{
+			std::clog << "> Updating database to version 26..." << std::endl;
+			switch(db->getDatabaseEngine())
+				{
+		case DATABASE_ENGINE_MYSQL:
+				{
+					db->query("ALTER TABLE player_items ADD serial VARCHAR(255) NOT NULL DEFAULT '';");
+					db->query("ALTER TABLE player_depotitems ADD serial VARCHAR(255) NOT NULL DEFAULT '';");
+					db->query("ALTER TABLE tile_items ADD serial VARCHAR(255) NOT NULL DEFAULT '';");
+					db->query("ALTER TABLE tile_store ADD serial VARCHAR(255) NOT NULL DEFAULT '';");
+					db->query("ALTER TABLE house_data ADD serial VARCHAR(255) NOT NULL DEFAULT '';");
+					break;
+				}
+				case DATABASE_ENGINE_SQLITE:
+				{
+					db->query("ALTER TABLE player_items ADD serial VARCHAR(255) NOT NULL DEFAULT '';");
+					db->query("ALTER TABLE player_depotitems ADD serial VARCHAR(255) NOT NULL DEFAULT '';");
+					db->query("ALTER TABLE tile_items ADD serial VARCHAR(255) NOT NULL DEFAULT '';");
+					db->query("ALTER TABLE tile_store ADD serial VARCHAR(255) NOT NULL DEFAULT '';");
+					db->query("ALTER TABLE house_data ADD serial VARCHAR(255) NOT NULL DEFAULT '';");
+					break;
+				}
+
+				default:
+					break;
+			}
+
+			query.str("");
+			registerDatabaseConfig("db_version", 26);
+			return 26;
+		}
 
 		default:
 			break;
