@@ -353,9 +353,8 @@ bool ProtocolGame::logout(bool displayEffect, bool forceLogout)
 
 bool ProtocolGame::connect(uint32_t playerId, OperatingSystem_t operatingSystem, uint16_t version, bool castAccount)
 {
-	if(!castAccount)
-		unRef();
-		
+	unRef();
+
 	m_eventConnect = 0;
 
 	Player* _player = g_game.getPlayerByID(playerId);
