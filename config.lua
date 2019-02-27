@@ -236,7 +236,6 @@
 	idleWarningTime = 14 * 60 * 1000
 	idleKickTime = 15 * 60 * 1000
 	reportsExpirationAfterReads = 1
-	playerQueryDeepness = 2
 	tileLimit = 0
 	protectionTileLimit = 0
 	houseTileLimit = 0
