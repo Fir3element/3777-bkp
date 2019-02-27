@@ -2957,7 +2957,6 @@ Cylinder* Player::__queryDestination(int32_t& index, const Thing* thing, Item** 
 				freeSlots.push_back(std::make_pair(this, i));
 		}
 
-		int32_t deepness = g_config.getNumber(ConfigManager::PLAYER_DEEPNESS);
 		while(!containers.empty())
 		{
 			Container* tmpContainer = containers.front().first;
@@ -2991,8 +2990,7 @@ Cylinder* Player::__queryDestination(int32_t& index, const Thing* thing, Item** 
 							return container;
 						}
 
-						if(deepness < 0 || level < deepness)
-							containers.push_back(std::make_pair(container, level + 1));
+						containers.push_back(std::make_pair(container, level + 1));
 					}
 				}
 				else
