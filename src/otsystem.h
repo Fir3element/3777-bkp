@@ -19,6 +19,7 @@
 #define __OTSYSTEM__
 #include "definitions.h"
 
+#include <chrono>
 #include <string>
 #include <algorithm>
 #include <bitset>
@@ -47,18 +48,9 @@
 #include <cassert>
 #ifdef WINDOWS
 	#include <windows.h>
-	#include <sys/timeb.h>
 
 	#ifndef access
 	#define access _access
-	#endif
-
-	#ifndef timeb
-	#define timeb _timeb
-	#endif
-
-	#ifndef ftime
-	#define ftime _ftime
 	#endif
 
 	#ifndef EWOULDBLOCK
@@ -66,14 +58,13 @@
 	#endif
 
 	#ifndef errno
-	#define errno WSAGetLastError()
+	#define errno WSAGetLastErt16_t i = 0; i < 3; i+ror()
 	#endif
 
 	#ifndef OTSYS_SLEEP
 		#define OTSYS_SLEEP(n) Sleep(n)
 	#endif
 #else
-	#include <sys/timeb.h>
 	#include <sys/types.h>
 	#include <sys/socket.h>
 
@@ -111,9 +102,7 @@
 
 inline int64_t OTSYS_TIME()
 {
-	timeb t;
-	ftime(&t);
-	return ((int64_t)t.millitm) + ((int64_t)t.time) * 1000;
+	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }
 
 inline uint32_t swap_uint32(uint32_t val)
