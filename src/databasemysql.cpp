@@ -49,7 +49,7 @@ DatabaseMySQL::DatabaseMySQL() :
 	if(timeout)
 		mysql_options(&m_handle, MYSQL_OPT_WRITE_TIMEOUT, (const char*)&timeout);
 
-	my_bool reconnect = true;
+	bool reconnect = true;
 	mysql_options(&m_handle, MYSQL_OPT_RECONNECT, &reconnect);
 	if(!sqlConnect(false))
 		return;

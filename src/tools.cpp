@@ -667,12 +667,9 @@ std::string formatDateEx(time_t _time/* = 0*/, std::string format/* = "%d %b %Y,
 	return buffer;
 }
 
-std::string formatTime(time_t _time/* = 0*/, bool ms/* = false*/)
+std::string currentTimeString()
 {
-	if(!_time)
-		_time = time(NULL);
-	else if(ms)
-		ms = false;
+	time_t _time = time(NULL);
 
 	const tm* tms = localtime(&_time);
 	std::stringstream s;
@@ -683,20 +680,6 @@ std::string formatTime(time_t _time/* = 0*/, bool ms/* = false*/)
 			s << "0";
 
 		s << tms->tm_sec;
-		if(ms)
-		{
-			timeb t;
-			ftime(&t);
-
-			s << "."; // make it format zzz
-			if(t.millitm < 10)
-				s << "0";
-
-			if(t.millitm < 100)
-				s << "0";
-
-			s << t.millitm;
-		}
 	}
 	else
 		s << "UNIX Time: " << (int32_t)_time;
