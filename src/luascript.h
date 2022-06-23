@@ -19,12 +19,12 @@
 #define __LUASCRIPT__
 #include "otsystem.h"
 #ifdef __LUAJIT__
-#include <lua.hpp>
+#include <luajit/lua.hpp>
 
 extern "C"
 {
-	#include <lauxlib.h>
-	#include <lualib.h>
+	#include <luajit/lauxlib.h>
+	#include <luajit/lualib.h>
 }
 #else
 
@@ -628,7 +628,6 @@ class LuaInterface
 		static int32_t luaGetCreatureSummons(lua_State* L);
 		static int32_t luaGetHighscoreString(lua_State* L);
 		static int32_t luaIsSightClear(lua_State* L);
-		static int32_t luaIsInArray(lua_State* L);
 		static int32_t luaAddEvent(lua_State* L);
 		static int32_t luaStopEvent(lua_State* L);
 		static int32_t luaRegisterCreatureEvent(lua_State* L);

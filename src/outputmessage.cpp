@@ -186,8 +186,13 @@ OutputMessage_ptr OutputMessagePool::getOutputMessage(Protocol* protocol, bool a
 	}
 
 	OutputMessage_ptr omsg;
+#ifdef __USE_DEVCPP__
 	omsg.reset(m_outputMessages.back(),
 		boost::bind(&OutputMessagePool::releaseMessage, this, _1));
+#else
+	omsg.reset(m_outputMessages.back(),
+		boost::bind(&OutputMessagePool::releaseMessage, this, std::placeholders::_1));
+#endif
 
 	m_outputMessages.pop_back();
 	configureOutputMessage(omsg, protocol, autoSend);

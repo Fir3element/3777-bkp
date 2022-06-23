@@ -16,11 +16,11 @@
 ////////////////////////////////////////////////////////////////////////
 #ifdef __USE_MYSQL__
 #include "otpch.h"
-#ifdef _MSC_VER
-#include <errmsg.h>
-#else
+// #ifdef _MSC_VER
+// #include <errmsg.h>
+// #else
 #include <mysql/errmsg.h>
-#endif
+// #endif
 #include <iostream>
 
 #include "database.h"
@@ -49,7 +49,11 @@ DatabaseMySQL::DatabaseMySQL() :
 	if(timeout)
 		mysql_options(&m_handle, MYSQL_OPT_WRITE_TIMEOUT, (const char*)&timeout);
 
+#ifdef __USE_DEVCPP__
+	my_bool reconnect = true;
+#else
 	bool reconnect = true;
+#endif
 	mysql_options(&m_handle, MYSQL_OPT_RECONNECT, &reconnect);
 	if(!sqlConnect(false))
 		return;

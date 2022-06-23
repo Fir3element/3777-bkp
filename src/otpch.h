@@ -32,7 +32,7 @@
 //boost
 #include <boost/config.hpp>
 #include <boost/function.hpp>
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/regex.hpp>
 #include <boost/tokenizer.hpp>
 

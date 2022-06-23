@@ -1,0 +1,10 @@
+*.dll
+*.exe
+*.s3db
+config.lua
+src/vc*/.vs
+src/vc*/x64
+src/dev-cpp/obj/*
+src/dev-cpp/Makefile.win
+.vs
+.vscode

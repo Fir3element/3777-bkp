@@ -83,6 +83,10 @@ inline void boost::throw_exception(std::exception const & e)
 }
 #endif
 
+#ifdef __USE_DEVCPP__
+#include <signal.h>
+#endif
+
 ConfigManager g_config;
 Game g_game;
 Monsters g_monsters;
@@ -94,6 +98,16 @@ boost::mutex g_loaderLock;
 boost::condition_variable g_loaderSignal;
 boost::unique_lock<boost::mutex> g_loaderUniqueLock(g_loaderLock);
 std::list<std::pair<uint32_t, uint32_t> > serverIps;
+
+#ifdef _WIN32
+BOOL ConsoleHandlerRoutine(DWORD dwCtrlType)
+{
+	Dispatcher::getInstance().addTask(createTask(
+		boost::bind(&Game::setGameState, &g_game, GAMESTATE_SHUTDOWN)));
+	ExitThread(0);
+	return 0;
+}
+#endif
 
 bool argumentsHandler(StringVec args)
 {
@@ -232,6 +246,31 @@ int32_t getch()
 {
 	return (int32_t)getchar();
 }
+// #ifndef __USE_DEVCPP__
+void signalHandler(int32_t sig)
+{
+	switch(sig)
+	{
+		case SIGBREAK:
+			Dispatcher::getInstance().addTask(createTask(
+				boost::bind(&Game::setGameState, &g_game, GAMESTATE_SHUTDOWN)));
+			break;
+
+		case SIGINT:
+			Dispatcher::getInstance().addTask(createTask(
+				boost::bind(&Game::shutdown, &g_game)));
+			break;
+
+		case SIGTERM:
+			Dispatcher::getInstance().addTask(createTask(
+				boost::bind(&Game::shutdown, &g_game)));
+			break;
+
+		default:
+			break;
+	}
+}
+// #endif
 #endif
 
 void allocationHandler()
@@ -289,6 +328,12 @@ int main(int argc, char* argv[])
 	signal(SIGCONT, signalHandler); //reload all
 	signal(SIGQUIT, signalHandler); //save & shutdown
 	signal(SIGTERM, signalHandler); //shutdown
+#else
+	// #ifndef __USE_DEVCPP__
+	signal(SIGBREAK, signalHandler); //save & shutdown
+	signal(SIGINT, signalHandler); //shutdown
+	signal(SIGTERM, signalHandler); //shutdown
+	// #endif
 #endif
 
 	OutputHandler::getInstance();
@@ -298,6 +343,9 @@ int main(int argc, char* argv[])
 	if(servicer.isRunning())
 	{
 		std::clog << ">> " << g_config.getString(ConfigManager::SERVER_NAME) << " server Online!" << std::endl << std::endl;
+#ifdef _WIN32
+		SetConsoleCtrlHandler((PHANDLER_ROUTINE)ConsoleHandlerRoutine, 1);
+#endif
 		servicer.run();
 	}
 	else
