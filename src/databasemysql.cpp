@@ -16,11 +16,11 @@
 ////////////////////////////////////////////////////////////////////////
 #ifdef __USE_MYSQL__
 #include "otpch.h"
-// #ifdef _MSC_VER
-// #include <errmsg.h>
-// #else
+#if defined(_MSC_VER) && _MSC_VER < 1800
+#include <errmsg.h>
+#else
 #include <mysql/errmsg.h>
-// #endif
+#endif
 #include <iostream>
 
 #include "database.h"

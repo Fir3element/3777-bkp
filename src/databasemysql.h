@@ -22,11 +22,11 @@
 #error "database.h should be included first."
 #endif
 
-// #ifdef _MSC_VER
-// #include <mysql.h>
-// #else
+#if defined(_MSC_VER) && _MSC_VER < 1800
+#include <mysql.h>
+#else
 #include <mysql/mysql.h>
-// #endif
+#endif
 
 #if defined WINDOWS
 #include <winsock2.h>

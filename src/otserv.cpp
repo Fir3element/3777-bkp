@@ -246,7 +246,7 @@ int32_t getch()
 {
 	return (int32_t)getchar();
 }
-// #ifndef __USE_DEVCPP__
+
 void signalHandler(int32_t sig)
 {
 	switch(sig)
@@ -270,7 +270,6 @@ void signalHandler(int32_t sig)
 			break;
 	}
 }
-// #endif
 #endif
 
 void allocationHandler()
@@ -329,11 +328,9 @@ int main(int argc, char* argv[])
 	signal(SIGQUIT, signalHandler); //save & shutdown
 	signal(SIGTERM, signalHandler); //shutdown
 #else
-	// #ifndef __USE_DEVCPP__
 	signal(SIGBREAK, signalHandler); //save & shutdown
 	signal(SIGINT, signalHandler); //shutdown
 	signal(SIGTERM, signalHandler); //shutdown
-	// #endif
 #endif
 
 	OutputHandler::getInstance();
