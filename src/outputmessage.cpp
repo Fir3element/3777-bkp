@@ -186,7 +186,7 @@ OutputMessage_ptr OutputMessagePool::getOutputMessage(Protocol* protocol, bool a
 	}
 
 	OutputMessage_ptr omsg;
-#ifdef __USE_DEVCPP__
+#if defined(__USE_DEVCPP__) || defined(__linux__)
 	omsg.reset(m_outputMessages.back(),
 		boost::bind(&OutputMessagePool::releaseMessage, this, _1));
 #else
