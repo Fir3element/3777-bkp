@@ -13,6 +13,12 @@
 ### MSVC10 libs and includes
 - https://github.com/Fir3element/binaries/raw/master/vc10_pack.rar
 
+## Libraries for Visual Studio 2022 (using vcpkg)
+
+```
+vcpkg install --triplet x64-windows luajit sqlite3 libmysql libxml2 gmp boost-filesystem boost-regex boost-thread boost-asio
+```
+
 ## Build instruction for Ubuntu
 
 ```
