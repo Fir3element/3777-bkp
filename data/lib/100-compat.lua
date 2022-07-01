@@ -8,6 +8,7 @@ FALSE = false
 LUA_ERROR = false
 LUA_NO_ERROR = true
 LUA_NULL = nil
+if unpack == nil then unpack = table.unpack end
 
 TALKTYPE_CHANNEL_R1 = TALKTYPE_CHANNEL_RN
 TALKTYPE_CHANNEL_R2 = TALKTYPE_CHANNEL_RA
