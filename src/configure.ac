@@ -62,14 +62,6 @@ AC_ARG_ENABLE(login-server, [  --enable-login-server  enable running in a login 
 	loginServer=yes
 )
 
-# check if we want to use luajit instead of lua
-luaJIT=no
-AC_ARG_ENABLE(luajit, [  --enable-luajit		enable luajit instead of lua],
-	[OPTIONAL_FLAGS="$OPTIONAL_FLAGS -D__LUAJIT__"]
-	luaJIT=yes
-)
-AC_SUBST(OPTIONAL_FLAGS)
-
 # check if we want a debug build
 debugBuild=no
 AC_ARG_ENABLE(debug, [  --enable-debug		enable debuging],
@@ -240,7 +232,6 @@ echo Login server mode........... : $loginServer
 echo Home-directory configuration : $homedirConf
 echo OTServ custom allocator..... : $otservAllocator
 echo Debug build................. : $debugBuild
-echo Using LuaJIT................ : $luaJIT
 echo
 echo Build with MySQL............ : $useMySQL
 echo Build with SQLite........... : $useSQLite

@@ -1,0 +1,20 @@
+FROM ubuntu:focal
+
+ENV TZ=America/Argentina/Buenos_Aires
+
+RUN apt-get update
+RUN apt-get install --no-install-recommends -y tzdata
+RUN apt-get install --no-install-recommends -y \
+  autoconf automake pkg-config build-essential \
+  liblua5.1-0-dev libsqlite3-dev libmysqlclient-dev libxml2-dev libgmp3-dev \
+  libboost-filesystem-dev libboost-regex-dev libboost-thread-dev
+
+WORKDIR /home/3777-master
+
+COPY . .
+RUN cd src && \
+    chmod +x autogen.sh && \
+    ./autogen.sh && \
+    ./configure --enable-sqlite --enable-mysql --enable-root-permission --enable-server-diag && \
+    ./build.sh && \
+    mv theforgottenserver ..
