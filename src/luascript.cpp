@@ -857,9 +857,6 @@ bool LuaInterface::initState()
 		return false;
 
 	luaL_openlibs(m_luaState);
-#ifdef __LUAJIT__
-	luaJIT_setmode(m_luaState, 0, LUAJIT_MODE_ENGINE | LUAJIT_MODE_ON);
-#endif
 
 	registerFunctions();
 	if(!loadDirectory(getFilePath(FILE_TYPE_OTHER, "lib/"), NULL))
@@ -1833,7 +1830,7 @@ void LuaInterface::registerFunctions()
 	//doPlayerSetVocation(cid,voc)
 	lua_register(m_luaState, "doPlayerSetVocation", LuaInterface::luaDoPlayerSetVocation);
 
-	//doPlayerRemoveItem(cid, itemid[, count[, subType = -1]])
+	//doPlayerRemoveItem(cid, itemid[, count[, subType = -1[, ignoreEquipped = false]]])
 	lua_register(m_luaState, "doPlayerRemoveItem", LuaInterface::luaDoPlayerRemoveItem);
 
 	//doPlayerAddExperience(cid, amount)
@@ -3262,9 +3259,13 @@ int32_t LuaInterface::luaDoRemoveItem(lua_State* L)
 
 int32_t LuaInterface::luaDoPlayerRemoveItem(lua_State* L)
 {
-	//doPlayerRemoveItem(cid, itemid, count[, subType = -1])
-	int32_t subType = -1;
-	if(lua_gettop(L) > 3)
+	//doPlayerRemoveItem(cid, itemid, count[, subType = -1[, ignoreEquipped = false]])
+	int32_t params = lua_gettop(L), subType = -1;
+	bool ignoreEquipped = false;
+	if(params > 4)
+		ignoreEquipped = popBoolean(L);
+
+	if(params > 3)
 		subType = popNumber(L);
 
 	uint32_t count = popNumber(L);
@@ -3272,7 +3273,7 @@ int32_t LuaInterface::luaDoPlayerRemoveItem(lua_State* L)
 
 	ScriptEnviroment* env = getEnv();
 	if(Player* player = env->getPlayerByUID(popNumber(L)))
-		lua_pushboolean(L, g_game.removeItemOfType(player, itemId, count, subType));
+		lua_pushboolean(L, g_game.removeItemOfType(player, itemId, count, subType, ignoreEquipped));
 	else
 	{
 		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));

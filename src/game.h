@@ -381,7 +381,7 @@ class Game
 			* meaning it's not used
 		  * \returns true if the removal was successful
 		  */
-		bool removeItemOfType(Cylinder* cylinder, uint16_t itemId, int32_t count, int32_t subType = -1);
+		bool removeItemOfType(Cylinder* cylinder, uint16_t itemId, int32_t count, int32_t subType = -1, bool onlyContainers = false);
 
 		/**
 		  * Get the amount of money in a a cylinder

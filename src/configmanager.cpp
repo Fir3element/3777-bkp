@@ -41,9 +41,9 @@ bool ConfigManager::load()
 	if(L)
 		lua_close(L);
 
-	L = lua_open();
+	L = luaL_newstate();
 	if(!L)
-		return false;
+		throw std::runtime_error("Failed to allocate memory");
 
 	luaL_openlibs(L);
 	if(luaL_dofile(L, m_confString[CONFIG_FILE].c_str()))
