@@ -1200,7 +1200,7 @@ if(Modules == nil) then
 	end
 
 	-- Callback onSell() function. If you wish, you can change certain Npc to use your onSell().
-	function ShopModule:callbackOnSell(cid, itemid, subType, amount, ignoreCap, inBackpacks, ignoreEquipped)
+	function ShopModule:callbackOnSell(cid, itemid, subType, amount, ignoreEquipped, dummy)
 		if(self.npcHandler.shopItems[itemid] == nil) then
 			error("[ShopModule.onSell]", "items[itemid] == nil")
 			return false

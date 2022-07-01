@@ -3354,10 +3354,10 @@ void Player::postRemoveNotification(Creature*, Thing* thing, const Cylinder* new
 		if(const Item* item = (newParent ? newParent->getItem() : NULL))
 		{
 			assert(item->getContainer() != NULL);
-			requireListUpdate = item->getContainer()->getHoldingPlayer() != this;
+			requireListUpdate = item->getContainer()->getHoldingPlayer() == this;
 		}
 		else
-			requireListUpdate = newParent != this;
+			requireListUpdate = newParent == this;
 
 		updateInventoryWeight();
 		updateItemsLight();
