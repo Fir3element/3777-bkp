@@ -17,9 +17,6 @@
 #include "otpch.h"
 #include <iomanip>
 
-#include <boost/config.hpp>
-#include <boost/bind.hpp>
-
 #include "iomap.h"
 #include "map.h"
 #include "tile.h"

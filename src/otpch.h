@@ -35,7 +35,6 @@
 #include <boost/bind/bind.hpp>
 #include <boost/regex.hpp>
 #include <boost/tokenizer.hpp>
-#define BOOST_BIND_GLOBAL_PLACEHOLDERS
 
 //otserv
 #include "thing.h"
