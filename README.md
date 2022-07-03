@@ -1,17 +1,9 @@
 ## Useful links
 ### Binaries
-- x32 (visual studio): https://github.com/Fir3element/binaries/raw/master/x32.rar
-- x32 (dev-cpp): https://github.com/Fir3element/binaries/raw/master/x32_dev.rar
-- x64 (visual studio): https://github.com/Fir3element/binaries/raw/master/x64.rar
+- Windows x64: https://github.com/Fir3element/binaries/raw/master/x64-windows.zip
 
 ### Source
 - https://github.com/Fir3element/3777/archive/master.zip
-
-### Dev cpp
-- https://github.com/Fir3element/binaries/raw/master/dev-cpp.rar
-
-### MSVC10 libs and includes
-- https://github.com/Fir3element/binaries/raw/master/vc10_pack.rar
 
 ## Libraries for Visual Studio 2022 (using vcpkg)
 
