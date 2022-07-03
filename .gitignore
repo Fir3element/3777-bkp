@@ -2,8 +2,9 @@
 *.exe
 *.s3db
 config.lua
-src/vs*/.vs
-src/vs*/x64
+src/vs/.vs
+src/vs/x64*
+src/vs/Release*
 src/dev-cpp/obj/*
 src/dev-cpp/Makefile.win
 .vs

@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <PREPROCESSOR_DEFS>__USE_MYSQL__;__USE_SQLITE__;__ENABLE_SERVER_DIAGNOSTIC__;</PREPROCESSOR_DEFS>
-    <TFS_LIBDEPS>lua51.lib;libmysql.lib</TFS_LIBDEPS>
+    <TFS_LIBDEPS>lua51.lib</TFS_LIBDEPS>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup>
