@@ -88,7 +88,7 @@ bool GameServers::loadFromXml(bool result)
 			name = strValue;
 		else
 		{
-			name = "Server #" + id;
+			name = "Server #" + std::to_string(id);
 			std::clog << "[Warning - GameServers::loadFromXml] Missing name for server " << id << ", using default" << std::endl;
 		}
 

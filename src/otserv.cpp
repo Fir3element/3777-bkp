@@ -460,15 +460,15 @@ void otserv(StringVec, ServiceManager* services)
 		SetPriorityClass(GetCurrentProcess(), ABOVE_NORMAL_PRIORITY_CLASS);
 
 #else
-#ifndef MACOS
+#if !defined(MACOS) && !defined(__APPLE__)
 		cpu_set_t mask;
 		CPU_ZERO(&mask);
 		for(IntegerVec::iterator it = cores.begin(); it != cores.end(); ++it)
 			CPU_SET((*it), &mask);
 
 		sched_setaffinity(getpid(), (int32_t)sizeof(mask), &mask);
-	}
 #endif
+	}
 
 	std::string runPath = g_config.getString(ConfigManager::RUNFILE);
 	if(runPath != "" && runPath.length() > 2)

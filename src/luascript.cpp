@@ -2713,7 +2713,7 @@ int32_t LuaInterface::internalGetPlayerInfo(lua_State* L, PlayerInfo_t info)
 			value = player->tradeState;
 			break;
 		default:
-			errorEx("Unknown player info #" + info);
+			errorEx("Unknown player info #" + std::to_string(info));
 			value = 0;
 			break;
 	}

@@ -352,17 +352,6 @@ bool hasBitSet(uint32_t flag, uint32_t flags)
 	return ((flags & flag) == flag);
 }
 
-#if !defined(_MSC_VER) || _MSC_VER < 1800
-int32_t round(float v)
-{
-	int32_t t = (int32_t)std::floor(v);
-	if((v - t) > 0.5)
-		return t + 1;
-
-	return t;
-}
-#endif
-
 uint32_t rand24b()
 {
 	return ((rand() << 12) ^ (rand())) & (0xFFFFFF);
