@@ -12,8 +12,9 @@ RUN apt-get install --no-install-recommends -y \
 WORKDIR /home/3777-master
 
 COPY . .
+RUN mv config.lua.dist config.lua
 RUN mkdir build && \
     cd build && \
-    cmake && \
-    make -j$(grep processor /proc/cpuinfo | wc -l) && \
-    mv theforgottenserver ..
+    cmake .. && \
+    make -j$(grep processor /proc/cpuinfo | wc -l)
+RUN mv theforgottenserver ..
