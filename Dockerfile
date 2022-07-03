@@ -12,9 +12,8 @@ RUN apt-get install --no-install-recommends -y \
 WORKDIR /home/3777-master
 
 COPY . .
-RUN cd src && \
-    chmod +x autogen.sh && \
-    ./autogen.sh && \
-    ./configure --enable-sqlite --enable-mysql --enable-root-permission --enable-server-diag && \
-    ./build.sh && \
+RUN mkdir build && \
+    cd build && \
+    cmake && \
+    make -j$(grep processor /proc/cpuinfo | wc -l) && \
     mv theforgottenserver ..
