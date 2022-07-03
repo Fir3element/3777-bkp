@@ -1,5 +1,6 @@
 ## Useful links
 ### Binaries
+- Windows x32: https://github.com/Fir3element/binaries/raw/master/x32-windows.zip
 - Windows x64: https://github.com/Fir3element/binaries/raw/master/x64-windows.zip
 
 ### Source
@@ -7,8 +8,14 @@
 
 ## Libraries for Visual Studio 2022 (using vcpkg)
 
+- x32:
 ```
-.\vcpkg install --triplet x64-windows luajit sqlite3 libmysql libxml2 gmp boost-filesystem boost-regex boost-thread boost-asio
+.\vcpkg install luajit sqlite3 libmariadb libxml2 gmp boost-filesystem boost-regex boost-thread boost-asio boost-foreach boost-any openssl
+```
+
+- x64:
+```
+.\vcpkg install --triplet x64-windows luajit sqlite3 libmariadb libxml2 gmp boost-filesystem boost-regex boost-thread boost-asio
 ```
 
 ## Build instruction for Ubuntu
