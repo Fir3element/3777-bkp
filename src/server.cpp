@@ -64,9 +64,11 @@ void ServicePort::open(IPAddressList ips, uint16_t port)
 	bool error = false;
 	for(IPAddressList::iterator it = ips.begin(); it != ips.end(); ++it)
 	{
+		auto IP = g_config.getBool(ConfigManager::BIND_ONLY_GLOBAL_ADDRESS) ?
+			boost::asio::ip::address(boost::asio::ip::address_v4(INADDR_ANY)) : *it;
+
 		try
 		{
-			auto IP = g_config.getBool(ConfigManager::BIND_ONLY_GLOBAL_ADDRESS) ? boost::asio::ip::address(boost::asio::ip::address_v4(INADDR_ANY)) : *it;
 			Acceptor_ptr tmp(new boost::asio::ip::tcp::acceptor(m_io_service,
 				boost::asio::ip::tcp::endpoint(IP, m_serverPort)));
 
@@ -84,7 +86,11 @@ void ServicePort::open(IPAddressList ips, uint16_t port)
 
 			m_pendingStart = true;
 			Scheduler::getInstance().addEvent(createSchedulerTask(5000, boost::bind(
-				&ServicePort::service, boost::weak_ptr<ServicePort>(shared_from_this()), *it, m_serverPort)));
+				&ServicePort::service, boost::weak_ptr<ServicePort>(shared_from_this()), IP, m_serverPort)));
+		}
+
+		if(g_config.getBool(ConfigManager::BIND_ONLY_GLOBAL_ADDRESS)) {
+			break;
 		}
 	}
 

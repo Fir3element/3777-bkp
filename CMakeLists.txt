@@ -10,7 +10,7 @@ add_executable(theforgottenserver ${theforgottenserver_SRC})
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-add_definitions(-D__USE_MYSQL__ -D__USE_SQLITE__ -D__ROOT_PERMISSION__)
+add_definitions(-D__USE_MYSQL__ -D__USE_SQLITE__ -D__ROOT_PERMISSION__ -D__ENABLE_SERVER_DIAGNOSTIC__)
 
 set(CMAKE_CXX_FLAGS "-Ofast -DNDEBUG")
 
@@ -24,10 +24,8 @@ find_package(LibXml2 REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem regex thread)
 
-if(APPLE)
+if(NOT LuaJIT)
   find_package(Lua 5.1 REQUIRED)
-else()
-  find_package(LuaJIT REQUIRED)
 endif()
 
 include_directories(
